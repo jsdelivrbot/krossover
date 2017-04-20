@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import VideoList from './components/video_list';
 import VideoPlayer from './components/video_player';
+import VideoClipForm from './components/video_clip_form';
 
 class App extends Component{
   constructor(props) {
@@ -65,11 +66,29 @@ class App extends Component{
 
       return this.setState({videos: this.state.videos.filter((video)=>{return video._id !== selectedVideo }) })
     }
+    const onUpdateClipping =  selectedVideo => {
+      this.setState({selectedVideo: {
+        title: selectedVideo.title,
+        _id: `${selectedVideo.start}-${selectedVideo.end}`,
+        duration: [selectedVideo.start, selectedVideo.end],
+        url: `http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4#t=${selectedVideo.start},${selectedVideo.end}`,
+        controls: false,
+        removable: true
+      }})
+
+      return this.setState({videos: this.state.videos.filter((video)=>{return video._id !== selectedVideo }) })
+    }
+    const onCreateClipping =  selectedVideo => {
+this.setState({videos: [...this.state.videos, selectedVideo]})
+
+      // return this.setState({videos: this.state.videos.filter((video)=>{return video._id !== selectedVideo }) })
+    }
     return(
       <div>
         <div className="row border" >
           <div className="no-padding col-lg-8 col-xs-12">
             <VideoPlayer video={this.state.selectedVideo}/>
+            <VideoClipForm onUpdateClipping={onUpdateClipping} onCreateClipping={onCreateClipping} removable={this.state.selectedVideo.removable} duration={this.state.selectedVideo.duration} title={this.state.selectedVideo.title}/>
           </div>
 
           <VideoList
