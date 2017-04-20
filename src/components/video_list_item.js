@@ -11,22 +11,17 @@ const divStyle = {
 
 const VideoListItem = ({video, onVideoSelect, onVideoEdit,
 onVideoRemove, title, duration, controls, removable, _id}) => {
+const selectVideo = () => onVideoSelect({url: video, title, duration, controls, removable, _id })
 if (removable) {
   return (
-    <li onClick={() => onVideoSelect({url: video, controls})} className="list-group-item">
+    <li onClick={selectVideo} className="list-group-item">
 
       <div className="video-list media" style={divStyle}>
         <div className="edit-list">
-    <a className="edit" title="Edit" href="#"><i className="fa fa-pencil-square-o" aria-hidden="true"
-      onClick={(e) => {
-              e.stopPropagation();
-              this.onVideoEdit(video._id);
-            }}
-></i></a>
     <a className="remove" title="Remove" href="#"><i className="fa fa-times" aria-hidden="true"
       onClick={(e) => {
               e.stopPropagation();
-              this.onVideoRemove(video._id);
+              onVideoRemove(_id);
             }}
 ></i></a>
     </div>
@@ -42,7 +37,7 @@ if (removable) {
   );
 }
   return (
-    <li onClick={() => onVideoSelect({url: video, controls, removable})} className="list-group-item">
+    <li onClick={selectVideo} className="list-group-item">
       <div className="video-list media" style={divStyle}>
           <div className="media-left" >
           </div>

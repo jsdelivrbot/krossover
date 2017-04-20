@@ -3,8 +3,15 @@
   text-align: center;
 }
 
-.video_clip_form {
+form.video_clip_form {
 width: 100%;
+display: flex;
+justify-content: center;
+margin: 0;
+padding: 0;
+}
+form.video_clip_form .input-group{
+padding: 0;
 }
 
 div.white {
@@ -61,4 +68,8 @@ padding: 0 5px;
 
 div.media {
 margin: 0;
+}
+
+div.no-padding {
+padding: 0;
 }

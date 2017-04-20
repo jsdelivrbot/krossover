@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDom from 'react-dom';
 import VideoList from './components/video_list';
 import VideoPlayer from './components/video_player';
-import VideoClipForm from './components/video_clip_form';
 
 class App extends Component{
   constructor(props) {
@@ -42,37 +41,46 @@ class App extends Component{
           removable: true
         },
       ],
-      selectedVideo: {url: 'http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4', controls: true}
+      selectedVideo:         {
+        title: 'Original Video',
+        _id: 'og',
+        duration: [0, 52],
+        url: 'http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4',
+        controls: true,
+        removable: false
+      }
     }
   }
   render() {
 
-const onVideoSelect =  selectedVideo => {
-  console.log(selectedVideo)
-  return this.setState({selectedVideo})
-}
-const onVideoEdit =  selectedVideo => {
-  console.log(selectedVideo)
-  return this.setState({selectedVideo})
-}
-const onVideoRemove =  selectedVideo => {
-  console.log(selectedVideo)
-  return this.setState({selectedVideo})
-}
+    const onVideoSelect =  selectedVideo => {
+      console.log(selectedVideo)
+      return this.setState({selectedVideo})
+    }
+    const onVideoEdit =  selectedVideo => {
+      console.log(selectedVideo)
+      // return this.setState({selectedVideo})
+    }
+    const onVideoRemove =  selectedVideo => {
+
+      return this.setState({videos: this.state.videos.filter((video)=>{return video._id !== selectedVideo }) })
+    }
     return(
       <div>
         <div className="row border" >
-          <VideoPlayer video={this.state.selectedVideo}/>
+          <div className="no-padding col-lg-8 col-xs-12">
+            <VideoPlayer video={this.state.selectedVideo}/>
+          </div>
+
           <VideoList
             onVideoSelect={onVideoSelect}
             onVideoEdit={onVideoEdit}
             onVideoRemove={onVideoRemove}
-          videos={this.state.videos}/>
+            videos={this.state.videos}/>
+          </div>
         </div>
-        <VideoClipForm/>
-      </div>
-    );
+      );
+    }
   }
-}
 
-ReactDom.render(<App/>, document.querySelector( '.container'));
+  ReactDom.render(<App/>, document.querySelector( '.container'));
