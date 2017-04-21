@@ -10,43 +10,49 @@ const divStyle = {
 };
 
 const VideoListItem = ({video, onVideoSelect,
-onVideoRemove, title, duration, controls, removable, _id}) => {
-  const selectVideo = () => onVideoSelect({url: video, title, duration, controls, removable, _id });
-  if (removable) {
+  onVideoRemove, title, duration, controls, removable, _id}) => {
+    const selectVideo = () => onVideoSelect({url: video, title, duration, controls, removable, _id });
+    if (removable) {
+      return (
+        <li onClick={selectVideo} className='list-group-item'>
+
+          <div className='video-list media' style={divStyle}>
+            <div className='edit-list'>
+              <div className='media-heading white'>
+                {title} - [ {duration[0]} - {duration[1]} ]
+              </div>
+              <a className='remove' title='Remove' href='#'>
+                <i className='fa fa-times' aria-hidden='true'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onVideoRemove(_id);
+                  }}
+                />
+              </a>
+            </div>
+            <div className='media-left' />
+            <div className='media-body'>
+
+            </div>
+          </div>
+        </li>
+      );
+    }
     return (
       <li onClick={selectVideo} className='list-group-item'>
-
         <div className='video-list media' style={divStyle}>
-          <div className='edit-list'>
-            <a className='remove' title='Remove' href='#'><i className='fa fa-times' aria-hidden='true'
-              onClick={(e) => {
-                e.stopPropagation();
-                onVideoRemove(_id);
-              }}
- /></a>
-          </div>
-          <div className='media-left' />
-          <div className='media-body'>
+          <div className='edit-list-original-video'>
             <div className='media-heading white'>
               {title} - [ {duration[0]} - {duration[1]} ]
             </div>
           </div>
+          <div className='media-left' />
+          <div className='media-body'>
+
+          </div>
         </div>
       </li>
     );
-  }
-  return (
-    <li onClick={selectVideo} className='list-group-item'>
-      <div className='video-list media' style={divStyle}>
-        <div className='media-left' />
-        <div className='media-body'>
-          <div className='media-heading white'>
-            {title} - [ {duration[0]} - {duration[1]} ]
-            </div>
-        </div>
-      </div>
-    </li>
-  );
-};
+  };
 
-export default VideoListItem;
+  export default VideoListItem;
