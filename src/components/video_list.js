@@ -1,11 +1,10 @@
 import React from 'react';
 import VideoListItem from './video_list_item';
 const VideoList = (props) => {
-  const videoItems = props.videos.map((video, id)=> {
+  const videoItems = props.videos.map((video, id) => {
     return (
       <VideoListItem
         onVideoSelect={props.onVideoSelect}
-        onVideoEdit={props.onVideoEdit}
         onVideoRemove={props.onVideoRemove}
         title={video.title}
         duration={video.duration}
@@ -13,15 +12,15 @@ const VideoList = (props) => {
         _id={video._id}
         removable={video.removable}
         controls={video.controls}
-        video={video.url}/>
+        video={video.url} />
     );
   });
 
-  return(
-    <ul className="col-lg-4 col-xs-12 list-group">
+  return (
+    <ul className='col-lg-4 col-xs-12 list-group'>
       {videoItems}
     </ul>
   );
-}
+};
 
 export default VideoList;
