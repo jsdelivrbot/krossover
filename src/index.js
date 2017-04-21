@@ -7,25 +7,17 @@ import VideoClipForm from './components/video_clip_form';
 class App extends Component {
   constructor (props) {
     super(props);
+    let initialVideo = {
+      title: 'Original Video',
+      _id: 0,
+      duration: [0, 52],
+      url: 'http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4',
+      controls: true,
+      removable: false
+    };
     this.state = {
-      videos: [
-        {
-          title: 'Original Video',
-          _id: 0,
-          duration: [0, 52],
-          url: 'http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4',
-          controls: true,
-          removable: false
-        }
-      ],
-      selectedVideo: {
-        title: 'Original Video',
-        _id: 1,
-        duration: [0, 52],
-        url: 'http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4',
-        controls: true,
-        removable: false
-      }
+      videos: [initialVideo],
+      selectedVideo: initialVideo
     };
   }
   render () {
@@ -63,7 +55,9 @@ class App extends Component {
         controls: false,
         removable: true
       };
-      this.setState({videos: [...this.state.videos, newVideo]});
+      this.setState({videos: [...this.state.videos, newVideo]}, () => {
+        this.setState({selectedVideo: this.state.videos[this.state.videos.length - 1]});
+      });
     };
     return (
       <div>

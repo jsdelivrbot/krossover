@@ -45,7 +45,7 @@ class VideoClipForm extends React.Component {
       <form className='form-inline video_clip_form row col-xs-12'>
         <div className='input-group mb-2 mr-sm-2 mb-sm-0 col-xs-5'>
           <div className='input-group-addon'>Clip Name</div>
-          <input type='text' onChange={(e) => { this.setState({title: e.target.value}); }} placeholder="Add a name..." className='form-control no-border-radius-right no-border-right' type='text' />
+          <input type='text' onChange={(e) => { this.setState({title: e.target.value}); }} placeholder='Add a name...' className='form-control no-border-radius-right no-border-right' type='text' />
         </div>
         <div className='input-group mb-2 mr-sm-2 mb-sm-0 col-xs-2'>
           <div className='input-group-addon no-border-radius-left'>Start</div>
