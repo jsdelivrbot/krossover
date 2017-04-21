@@ -98,3 +98,17 @@ margin: 0;
 div.no-padding {
 padding: 0;
 }
+
+form .no-border-right {
+    border-right: 0;
+}
+form .no-border-radius-left{
+border-bottom-left-radius: initial;
+border-top-left-radius: initial;
+
+}
+form .no-border-radius-right{
+border-bottom-right-radius: initial;
+border-top-right-radius: initial;
+
+}
