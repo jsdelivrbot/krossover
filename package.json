@@ -1,5 +1,5 @@
 {
-  "name": "krossover video app",
+  "name": "krossover-video-app",
   "version": "1.0.0",
   "description": "Simple app to add make clippings of a video",
   "main": "index.js",
